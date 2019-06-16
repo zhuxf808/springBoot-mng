@@ -8,8 +8,8 @@ package com.zhuxf.common.enums;
 public enum ResultEnum {
 
     SUCCESS(1000, "操作成功"),
-    FAIL(9999, "系统未知错误");
-
+    FAIL(9999, "系统未知错误"),
+    LOGIN_FAIL(1001,"登陆失效，请重新登录");
     private Integer code;
 
     private String message;

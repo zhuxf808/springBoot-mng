@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.zhuxf.dao","com.zhuxf.dao.*"})
 @EnableCaching
-@ComponentScan(basePackages = {"com.zhuxf.*","com.zhuxf.common.*"})
+//@ComponentScan(basePackages = {"com.zhuxf.config.*","com.zhuxf.common.*"})
 public class Application {
 
     public static void main(String[] args) {

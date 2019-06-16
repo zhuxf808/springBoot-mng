@@ -38,19 +38,20 @@ public class WebLogAspect {
         startTime.set(System.currentTimeMillis());
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-
-        // 记录下请求内容
-        logger.info("URL_" + startTime + " : " + request.getRequestURL().toString());
-        logger.info("HTTP_METHOD_" + startTime + " : " + request.getMethod());
-        logger.info("IP_" + startTime + " : " + request.getRemoteAddr());
-        logger.info("CLASS_METHOD_" + startTime + " : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.info("ARGS_" + startTime + " : " + Arrays.toString(joinPoint.getArgs()));
+        if (attributes != null) {
+            HttpServletRequest request = attributes.getRequest();
+            // 记录下请求内容
+            logger.info("URL_" + startTime.get() + " : " + request.getRequestURL().toString());
+            logger.info("HTTP_METHOD_" + startTime + " : " + request.getMethod());
+            logger.info("IP_" + startTime + " : " + request.getRemoteAddr());
+            logger.info("CLASS_METHOD_" + startTime + " : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+            logger.info("ARGS_" + startTime + " : " + Arrays.toString(joinPoint.getArgs()));
+        }
     }
 
     @AfterReturning(returning = "ret", pointcut = "WebLog()")
     public void doAfterReturning(Object ret) {
-        logger.info("resultData,{}",ret);
+        logger.info("resultData_" + startTime.get() + ",{}", ret);
     }
 
 
